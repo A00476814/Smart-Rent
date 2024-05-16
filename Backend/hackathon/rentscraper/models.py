@@ -1,7 +1,7 @@
 # rentscraper/models.py
 
 from django.db import models
-
+from datetime import date
 class RentalListing(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
@@ -21,6 +21,33 @@ class RentalListing(models.Model):
     InBuildingLaundry = models.BooleanField(default=False)
     ParkingAvailable = models.BooleanField(default=False)
     GymAvailable = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
+
+
+class TempletonListing(models.Model):
+    bedrooms = models.CharField(max_length=50)
+    baths = models.CharField(max_length=50)
+    price = models.CharField(max_length=50)
+    HeatIncluded = models.BooleanField()
+    HotWaterIncluded = models.BooleanField()
+    HydroIncluded = models.BooleanField()
+    ParkingAvailable = models.BooleanField()
+    CatAllowed = models.BooleanField()
+    DogAllowed = models.BooleanField()
+    GymAvailable = models.BooleanField()
+    InBuildingLaundry = models.BooleanField()
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    title = models.CharField(max_length=255)
+    full_url = models.URLField()
+    address = models.CharField(max_length=255)
+    property_type = models.CharField(max_length=255)
+    size = models.CharField(max_length=50)
+    price_per_sqft = models.CharField(max_length=50)
+    image_urls = models.TextField()
+    date = models.DateField(default=date.today)
 
     def __str__(self):
         return self.title
